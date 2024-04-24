@@ -1,0 +1,23 @@
+table, th, td {
+    border: 1px solid;
+}
+
+th {
+    font-weight: bold;
+}
+
+th, td {
+    padding-top: 3px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+td {
+    text-align: right;
+}
+
+.toprow, .rowlabel {
+    font-weight: bold;
+    background-color: lightgrey;
+}
