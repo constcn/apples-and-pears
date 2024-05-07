@@ -1,0 +1,14 @@
+<h1>Outlook</h1>
+
+<table>
+    <tr>
+        <th *ngFor="let name of fields">
+            {{name}}
+        </th>
+    </tr>
+    <tr *ngFor="let row of table">
+        <td *ngFor="let value of row">
+            {{value}}
+        </td>
+    </tr>
+</table>
