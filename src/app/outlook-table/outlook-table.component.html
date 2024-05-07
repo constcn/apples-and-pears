@@ -12,3 +12,20 @@
         </td>
     </tr>
 </table>
+
+<h2>Transposed</h2>
+
+<table>
+    <tr>
+        <th></th>
+        <th *ngFor="let year of years">
+            {{year}}
+        </th>
+    </tr>
+    <tr *ngFor="let row of values; index as i">
+        <th>{{labels[i]}}</th>
+        <td *ngFor="let value of row">
+            {{value}}
+        </td>
+    </tr>
+</table>
