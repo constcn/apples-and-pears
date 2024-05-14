@@ -22,18 +22,17 @@ export class OutlookTableComponent {
   }
 
   ngOnInit(): void {
-    this.getOutlook();
-    this.getOutlookTransposed();
+    this.getOutlook().then(() => this.getOutlookTransposed());
   }
 
-  getOutlook() {
-    this.outlook = this.applesOutlookService.getOutlook();
+  async getOutlook() {
+    this.outlook = await this.applesOutlookService.getOutlook();
     this.fields = Object.keys(this.outlook[0]).map(this.camelToWords);
     this.table = this.outlook.map(row => Object.values(row));
   }
   
-  getOutlookTransposed() {
-    const outlook = this.applesOutlookService.getOutlook();
+  async getOutlookTransposed() {
+    const outlook = await this.applesOutlookService.getOutlook();
     this.labels = Object.keys(outlook[0]).slice(1).map(this.camelToWords);
     this.years = outlook.map(obj => obj.year);
     this.values = this.transpose(
