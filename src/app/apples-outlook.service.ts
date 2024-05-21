@@ -302,7 +302,7 @@ export class ApplesOutlookService {
     }
 ];
   
-  private url = "http://localhost/outlook";
+  private url = "http://localhost:3000/outlook";
 
   constructor() { }
 
