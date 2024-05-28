@@ -6,12 +6,14 @@ import { ApplesYear } from './apples-year';
 })
 
 export class ApplesOutlookService {
-  private url = "http://localhost:3000/outlook";
+  // private url = "http://localhost:3000/outlook";
+  // private url = "http://209.38.232.224:8080/csv/upload";
+  private url = "https://trincot.github.io/outlook.json";
 
   constructor() { }
 
   async getOutlook(): Promise<ApplesYear[]> {
-    const response = await fetch(this.url);
+    const response = await fetch(this.url, {cache: "no-cache"});
     const data = await response.json() ?? [];
     return data.map((row: any) => this.translate(row));
   }
