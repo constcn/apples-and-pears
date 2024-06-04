@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApplesYear } from '../apples-year';
 
 @Component({
   selector: 'app-file-upload',
@@ -6,12 +7,50 @@ import { Component } from '@angular/core';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent {
+  private keys: String[] = [
+    "year",
+    "area",
+    "yield",
+    "totalProduction",
+    "losses",
+    "usable",
+    "freshProduction",
+    "freshExports",
+    "freshImports",
+    "freshConsumption",
+    "freshPerCapitaConsumption",
+    "freshEndingStocks",
+    "freshChangeInStocks",
+    "freshSelfSufficiency",
+    "processedProduction",
+    "processedExports",
+    "processedImports",
+    "processedConsumption",
+    "processedPerCapitaConsumption",
+    "processedSelfSufficiency"
+  ]
   onFileSelected(event: any) {
+    console.log("onFileSelected");
     const files = event.target.files;
     const reader = new FileReader();
-    reader.onload = this.onLoaded;
+    reader.onload = (e) => this.onLoaded(e);
+    reader.readAsText(files[0]);
   }
   private onLoaded(event: any) {
-    // TODO
+    console.log("onLoaded called");
+    const [header, ...matrix] = this.transpose(this.csvToArray(event.target.result));
+    console.log(header);
+    console.log(matrix);
+    const result = matrix.map(row =>
+      Object.fromEntries(row.map((value, i) => [this.keys[i], value]))
+    );
+    console.log(result);
   }
+  private csvToArray(csv: String): String[][] {
+    return csv.split(/\r?\n/).map(line => line.split(","))
+  }
+  private transpose(matrix: String[][]): String[][] {
+    return matrix[0]?.map((_, i) => matrix.map(row => row[i])) ?? [];
+  }
+
 }
