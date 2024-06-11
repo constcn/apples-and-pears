@@ -41,9 +41,9 @@ export class FileUploadComponent {
     const [header, ...matrix] = this.transpose(this.csvToArray(event.target.result));
     console.log(header);
     console.log(matrix);
-    const result = matrix.map(row =>
+    const result = JSON.stringify(matrix.map(row =>
       Object.fromEntries(row.map((value, i) => [this.keys[i], value]))
-    );
+    ), null, 2);
     console.log(result);
   }
   private csvToArray(csv: String): String[][] {
