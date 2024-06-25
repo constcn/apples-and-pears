@@ -10,12 +10,12 @@ import { ApplesOutlookService } from "../apples-outlook.service";
 
 export class OutlookTableComponent {
   outlook: ApplesYear[] = [];
-  fields: String[] = [];
-  table: (Number | String)[][] = [];
+  fields: string[] = [];
+  table: (number | string)[][] = [];
 
-  years: String[] = [];
-  labels: String[] = [];
-  values: Number[][] = [];
+  years: string[] = [];
+  labels: string[] = [];
+  values: string[][] = [];
 
   constructor(private applesOutlookService: ApplesOutlookService) {
 
@@ -27,27 +27,28 @@ export class OutlookTableComponent {
 
   async getOutlook() {
     this.outlook = await this.applesOutlookService.getOutlook();
-    this.fields = Object.keys(this.outlook[0]).map(this.camelToWords);
-    this.table = this.outlook.map(row => Object.values(row));
+    this.fields = Object.keys(this.outlook[0]);
+    this.table = this.outlook.map(row => Object.values(row).map(this.formatDecimal));
   }
   
   async getOutlookTransposed() {
     const outlook = await this.applesOutlookService.getOutlook();
-    this.labels = Object.keys(outlook[0]).slice(1).map(this.camelToWords);
+    this.labels = Object.keys(outlook[0]).slice(1);
     this.years = outlook.map(obj => obj.year);
     this.values = this.transpose(
       outlook.map(obj => 
         // Skip year, format numbers with 1 decimal
-        Object.values(obj).slice(1).map(val => val.toFixed(1))
+        Object.values(obj).slice(1).map(this.formatDecimal)
       )
     );
   }
+
+  private formatDecimal(value: string | number): string {
+      return typeof value == "number" ? value.toFixed(1) : value;
+  }
   
-  private transpose(matrix: number[][]): number[][] {
+  private transpose(matrix: string[][]): string[][] {
     return matrix[0]?.map((_, i) => matrix.map(row => row[i])) ?? [];
   }
 
-  private camelToWords(camel: string) {
-    return camel.replace(/.[a-z]*/g, word => word[0].toUpperCase() + word.slice(1) + " ").trim();
-  }
 }

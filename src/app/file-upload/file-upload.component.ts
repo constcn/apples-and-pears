@@ -29,6 +29,7 @@ export class FileUploadComponent {
     "processedPerCapitaConsumption",
     "processedSelfSufficiency"
   ]
+  
   onFileSelected(event: any) {
     console.log("onFileSelected");
     const files = event.target.files;
@@ -36,28 +37,12 @@ export class FileUploadComponent {
     reader.onload = (e) => this.onLoaded(e);
     reader.readAsText(files[0]);
   }
+  
   private async onLoaded(event: any) {
-    console.log("onLoaded called");
     const response = await fetch("https://trincot.000webhostapp.com/upload_csv.php", {
         method: "POST",
         body: event.target.result
     });
-
-
-
-    const [header, ...matrix] = this.transpose(this.csvToArray(event.target.result));
-    console.log(header);
-    console.log(matrix);
-    const result = JSON.stringify(matrix.map(row =>
-      Object.fromEntries(row.map((value, i) => [this.keys[i], value]))
-    ), null, 2);
-    console.log(result);
-  }
-  private csvToArray(csv: String): String[][] {
-    return csv.split(/\r?\n/).map(line => line.split(","))
-  }
-  private transpose(matrix: String[][]): String[][] {
-    return matrix[0]?.map((_, i) => matrix.map(row => row[i])) ?? [];
   }
 
 }
