@@ -36,8 +36,15 @@ export class FileUploadComponent {
     reader.onload = (e) => this.onLoaded(e);
     reader.readAsText(files[0]);
   }
-  private onLoaded(event: any) {
+  private async onLoaded(event: any) {
     console.log("onLoaded called");
+    const response = await fetch("https://trincot.000webhostapp.com/upload_csv.php", {
+        method: "POST",
+        body: event.target.result
+    });
+
+
+
     const [header, ...matrix] = this.transpose(this.csvToArray(event.target.result));
     console.log(header);
     console.log(matrix);
