@@ -9,7 +9,7 @@ export class ApplesOutlookService {
   // private url = "http://localhost:3000/outlook";
   // private url = "http://209.38.232.224:8080/csv/upload";
   // private url = "https://trincot.github.io/outlook.json";
-  private url = "https://trincot.000webhostapp.com/outlook.php";
+  private url = "https://trincot.000webhostapp.com/outlook.json";
 
   constructor() { }
 

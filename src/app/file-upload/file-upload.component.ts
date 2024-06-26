@@ -1,35 +1,13 @@
 import { Component } from '@angular/core';
-import { ApplesYear } from '../apples-year';
+//import { ApplesYear } from '../apples-year';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css']
 })
+
 export class FileUploadComponent {
-  private keys: String[] = [
-    "year",
-    "area",
-    "yield",
-    "totalProduction",
-    "losses",
-    "usable",
-    "freshProduction",
-    "freshExports",
-    "freshImports",
-    "freshConsumption",
-    "freshPerCapitaConsumption",
-    "freshEndingStocks",
-    "freshChangeInStocks",
-    "freshSelfSufficiency",
-    "processedProduction",
-    "processedExports",
-    "processedImports",
-    "processedConsumption",
-    "processedPerCapitaConsumption",
-    "processedSelfSufficiency"
-  ]
-  
   onFileSelected(event: any) {
     console.log("onFileSelected");
     const files = event.target.files;
@@ -39,10 +17,16 @@ export class FileUploadComponent {
   }
   
   private async onLoaded(event: any) {
+    // TODO: maybe verify size of content to only send reasonable size to server
     const response = await fetch("https://trincot.000webhostapp.com/upload_csv.php", {
         method: "POST",
         body: event.target.result
     });
+    // TODO: refresh components that display the data
+    const reply = await response.text();
+    // TODO: if user uploads an invalid format, the reply will have an
+    //   appropriate error message. This could be displayed in a component...
+    console.log(reply);
   }
 
 }
