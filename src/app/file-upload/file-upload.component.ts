@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-//import { ApplesYear } from '../apples-year';
+import { Component, Inject } from '@angular/core';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-file-upload',
@@ -7,7 +10,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./file-upload.component.css']
 })
 
+//@Injectable({ providedIn: 'root' })
+
 export class FileUploadComponent {
+  private url = "https://trincot.000webhostapp.com/upload_csv.php";
+
+  //constructor(private http: HttpClient) {
+  constructor() {
+
+  }
+
   onFileSelected(event: any) {
     console.log("onFileSelected");
     const files = event.target.files;
@@ -15,8 +27,15 @@ export class FileUploadComponent {
     reader.onload = (e) => this.onLoaded(e);
     reader.readAsText(files[0]);
   }
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'text/csv' })
+  }
   
   private async onLoaded(event: any) {
+    // TODO: convert code to use http observable instead of fetch promise. 
+    // return this.http.post(this.url, event.target.result, this.httpOptions);
+
     // TODO: maybe verify size of content to only send reasonable size to server
     const response = await fetch("https://trincot.000webhostapp.com/upload_csv.php", {
         method: "POST",
