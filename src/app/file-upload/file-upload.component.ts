@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { ReloadDetectorService } from '../reload-detector.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -16,7 +17,7 @@ export class FileUploadComponent {
   private url = "https://trincot.000webhostapp.com/upload_csv.php";
 
   //constructor(private http: HttpClient) {
-  constructor() {
+  constructor(private reloadDetectorService: ReloadDetectorService) {
 
   }
 
@@ -46,6 +47,7 @@ export class FileUploadComponent {
     // TODO: if user uploads an invalid format, the reply will have an
     //   appropriate error message. This could be displayed in a component...
     console.log(reply);
+    this.reloadDetectorService.sendMessage();
   }
 
 }

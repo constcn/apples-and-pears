@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ApplesYear } from '../apples-year';
 import { ApplesOutlookService } from "../apples-outlook.service";
+import { Subscription } from 'rxjs';
+import { ReloadDetectorService } from '../reload-detector.service';
 
 @Component({
   selector: 'app-outlook-table',
@@ -17,11 +19,21 @@ export class OutlookTableComponent {
   labels: string[] = [];
   values: string[][] = [];
 
-  constructor(private applesOutlookService: ApplesOutlookService) {
+  subscription: Subscription;
 
+  constructor(private applesOutlookService: ApplesOutlookService,
+    private reloadDetectorService: ReloadDetectorService
+  ) {
+    this.subscription = this.reloadDetectorService.onMessage().subscribe(() => {
+      this.refresh();
+    });
   }
 
   ngOnInit(): void {
+    this.refresh();
+  }
+
+  private refresh() {
     this.getOutlook().then(() => this.getOutlookTransposed());
   }
 
@@ -51,4 +63,8 @@ export class OutlookTableComponent {
     return matrix[0]?.map((_, i) => matrix.map(row => row[i])) ?? [];
   }
 
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
 }
