@@ -38,7 +38,12 @@ export class FileUploadComponent {
     // return this.http.post(this.url, event.target.result, this.httpOptions);
 
     // TODO: maybe verify size of content to only send reasonable size to server
-    const response = await fetch("https://trincot.000webhostapp.com/upload_csv.php", {
+    // var uploadURL = "https://trincot.000webhostapp.com/upload_csv.php";
+    var uploadURL = "http://localhost:3000/upload_csv";
+    console.log("FileUploadComponent.onLoaded: content of local file:");
+    console.log(event.target.result);
+    console.log("FileUploadComponent.onLoaded: starting transfer of file to server");
+    const response = await fetch(uploadURL, {
         method: "POST",
         body: event.target.result
     });
