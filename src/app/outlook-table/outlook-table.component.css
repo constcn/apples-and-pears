@@ -2,6 +2,12 @@ table {
     border-collapse: collapse
 }
 
+.resizedTextbox {
+    border: none;
+    text-align: right;
+    width: 70px;
+}
+
 th, td {
     border: 1px solid;
     padding: 3px 5px 2px 5px;
@@ -10,6 +16,10 @@ th, td {
 th {
     font-weight: bold;
     background: silver;
+}
+
+.rowHeader {
+    text-align:left;
 }
 
 td {
