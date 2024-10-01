@@ -25,7 +25,7 @@
     <tr *ngFor="let row of values; index as i">
         <th class="rowHeader">{{labels[i]}}</th>
         <td *ngFor="let value of row">
-            <input type="text" value="{{value}}" class="resizedTextbox">
+            <editable-cell value="{{value}}"></editable-cell>
         </td>
     </tr>
 </table>
