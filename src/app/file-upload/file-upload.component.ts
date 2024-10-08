@@ -23,10 +23,12 @@ export class FileUploadComponent {
   }
 
   private async onLoaded(event: any) {
-    const reply = await this.applesOutlookService.setOutlook(event.target.result);
+    //const reply = await this.applesOutlookService.setOutlook(event.target.result);
+    this.applesOutlookService.setOutlook(event.target.result).subscribe(
+      reply => console.log(reply)
+    )
     // TODO: if user uploads an invalid format, the reply will have an
     //   appropriate error message. This could be displayed in a component...    
-    console.log(reply);
   }
 
 }

@@ -16,6 +16,10 @@ export class ApplesOutlookService {
   private getJson = "outlook.json";
   private putCsv = "upload_csv";
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'text/plain'})
+  };
+
   constructor(
     private http: HttpClient,
     private reloadDetectorService: ReloadDetectorService) { }
@@ -26,18 +30,14 @@ export class ApplesOutlookService {
     return this.http.get<ApplesYear[]>(this.host + this.getJson);
   }
 
-  async setOutlook(body: string) {
+  setOutlook(body: string): Observable<any> {
     // TODO: maybe verify size of content to only send reasonable size to server
     console.log("ApplesOutlookService.setOutlook: content of local file:");
     console.log(body);
     console.log("ApplesOutlookService.setOutlook: starting transfer of file to server");
-    const response = await fetch(this.host + this.putCsv, {
-        method: "POST",
-        body
-    });
-    const reply = await response.text();
-    this.reloadDetectorService.sendMessage();
-    return reply;
+    const response = this.http.post<String>(this.host + this.putCsv, body, this.httpOptions);
+    response.subscribe((reply) => this.reloadDetectorService.sendMessage());
+    return response;
   }
 
 }

@@ -25,6 +25,7 @@ export class OutlookTableComponent {
     private reloadDetectorService: ReloadDetectorService
   ) {
     this.subscription = this.reloadDetectorService.onMessage().subscribe(() => {
+      console.log("I WAZ HERE");
       this.refresh();
     });
   }
