@@ -2,13 +2,13 @@
 
 <table>
     <tr>
-        <th *ngFor="let name of fields">
+        <th *ngFor="let name of fields" class="columnHeader">
             {{name}}
         </th>
     </tr>
     <tr *ngFor="let row of table">
         <td *ngFor="let value of row">
-            {{value}}
+            <input type="text" value="{{value}}" class="resizedTextbox">
         </td>
     </tr>
 </table>
@@ -18,12 +18,12 @@
 <table>
     <tr>
         <th></th>
-        <th *ngFor="let year of years">
+        <th *ngFor="let year of years" class="columnHeader">
             {{year}}
         </th>
     </tr>
     <tr *ngFor="let row of values; index as i">
-        <th>{{labels[i]}}</th>
+        <th class="rowHeader">{{labels[i]}}</th>
         <td *ngFor="let value of row">
             <editable-cell value="{{value}}"></editable-cell>
         </td>
