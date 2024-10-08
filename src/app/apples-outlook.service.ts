@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApplesYear } from './apples-year';
 import { ReloadDetectorService } from './reload-detector.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +16,14 @@ export class ApplesOutlookService {
   private getJson = "outlook.json";
   private putCsv = "upload_csv";
 
-  constructor(private reloadDetectorService: ReloadDetectorService) { }
+  constructor(
+    private http: HttpClient,
+    private reloadDetectorService: ReloadDetectorService) { }
 
   // TODO: convert below methods to use http observable instead of fetch promise. 
-
-  async getOutlook(): Promise<ApplesYear[]> {
+  getOutlook(): Observable<ApplesYear[]> {
     console.log("launching http request to", this.host + this.getJson);
-    const response = await fetch(this.host + this.getJson, {cache: "no-cache"});
-    const data = await response.json();
-    console.log("Getting this data from server:");
-    console.log(data);
-    return data ?? [];
+    return this.http.get<ApplesYear[]>(this.host + this.getJson);
   }
 
   async setOutlook(body: string) {

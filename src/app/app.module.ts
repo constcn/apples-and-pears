@@ -6,6 +6,7 @@ import { StaticTableComponent } from './static-table/static-table.component';
 import { OutlookTableComponent } from './outlook-table/outlook-table.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EditableCellComponent } from './editable-cell/editable-cell.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EditableCellComponent } from './editable-cell/editable-cell.component';
     EditableCellComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
