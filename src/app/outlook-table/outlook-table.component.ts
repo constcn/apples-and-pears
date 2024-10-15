@@ -24,10 +24,7 @@ export class OutlookTableComponent {
   constructor(private applesOutlookService: ApplesOutlookService,
     private reloadDetectorService: ReloadDetectorService
   ) {
-    this.subscription = this.reloadDetectorService.onMessage().subscribe(() => {
-      console.log("I WAZ HERE");
-      this.refresh();
-    });
+    this.subscription = this.reloadDetectorService.onMessage().subscribe(() => this.refresh());
   }
 
   ngOnInit(): void {
@@ -35,32 +32,25 @@ export class OutlookTableComponent {
   }
 
   private refresh() {
-    this.getOutlook().then(() => this.getOutlookTransposed());
+    const dataProvider = this.applesOutlookService.getOutlook();
+    dataProvider.subscribe((data) => this.renderOutlook(data));
+    dataProvider.subscribe((data) => this.renderOutlookTransposed(data));
   }
 
-  async getOutlook() {
-    //this.outlook = await this.applesOutlookService.getOutlook();
-    this.applesOutlookService.getOutlook().subscribe(
-      (outlook: ApplesYear[]) => {
-        this.outlook = outlook;
-        this.fields = Object.keys(this.outlook[0]);
-        this.table = this.outlook.map(row => Object.values(row).map(this.formatDecimal));
-      }
-    )
+  renderOutlook(outlook: ApplesYear[]) {
+    this.outlook = outlook;
+    this.fields = Object.keys(this.outlook[0]);
+    this.table = this.outlook.map(row => Object.values(row).map(this.formatDecimal));
   }
   
-  async getOutlookTransposed() {
-    this.applesOutlookService.getOutlook().subscribe(
-      (outlook: ApplesYear[]) => {
-        this.labels = Object.keys(outlook[0]).slice(1);
-        this.years = outlook.map(obj => obj.year);
-        this.values = this.transpose(
-          outlook.map(obj => 
-            // Skip year, format numbers with 1 decimal
-            Object.values(obj).slice(1).map(this.formatDecimal)
-          )
-        );
-      }
+  renderOutlookTransposed(outlook: ApplesYear[]) {
+    this.labels = Object.keys(outlook[0]).slice(1);
+    this.years = outlook.map(obj => obj.year);
+    this.values = this.transpose(
+      outlook.map(obj => 
+        // Skip year, format numbers with 1 decimal
+        Object.values(obj).slice(1).map(this.formatDecimal)
+      )
     );
   }
 
