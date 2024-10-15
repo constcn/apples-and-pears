@@ -15,7 +15,7 @@
 
 <h2>Transposed</h2>
 
-<table>
+<table #transposedTable>
     <tr>
         <th></th>
         <th *ngFor="let year of years" class="columnHeader">
@@ -29,3 +29,5 @@
         </td>
     </tr>
 </table>
+
+<button (click)="saveOutlook(transposedTable)">Save</button>

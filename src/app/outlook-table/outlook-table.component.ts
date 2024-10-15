@@ -62,6 +62,19 @@ export class OutlookTableComponent {
     return matrix[0]?.map((_, i) => matrix.map(row => row[i])) ?? [];
   }
 
+  saveOutlook(tableElem: HTMLTableElement) {
+    const rowCount = tableElem.rows.length;
+    for (let i = 1; i < rowCount; i++) {
+      const row = tableElem.rows[i];
+      const colCount = row.cells.length;
+      for (let j = 1; j < colCount; j++) {
+        const cell = row.cells[j];
+        const inputElem: HTMLInputElement|null = cell.querySelector("input");
+        console.log(inputElem?.value);
+      }
+    }
+  }
+
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
