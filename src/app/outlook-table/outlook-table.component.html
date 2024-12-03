@@ -7,8 +7,8 @@
         </th>
     </tr>
     <tr *ngFor="let row of table">
-        <td *ngFor="let value of row">
-            <input type="text" value="{{value}}" class="resizedTextbox">
+        <td *ngFor="let value of row; let j = index">
+            <input type="number" [(ngModel)]="row[j]" class="resizedTextbox">
         </td>
     </tr>
 </table>
@@ -24,8 +24,8 @@
     </tr>
     <tr *ngFor="let row of values; index as i">
         <th class="rowHeader">{{labels[i]}}</th>
-        <td *ngFor="let value of row">
-            <editable-cell value="{{value}}"></editable-cell>
+        <td *ngFor="let value of row; index as j">
+            <input type="number" [(ngModel)]="row[j]">
         </td>
     </tr>
 </table>

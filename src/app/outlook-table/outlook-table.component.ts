@@ -54,6 +54,19 @@ export class OutlookTableComponent {
     );
   }
 
+  /*fromTableToOutlook(): ApplesYear[] {
+    const transposedValues = this.transpose(this.values);
+    return transposedValues.map(row => {
+
+        const obj: ApplesYear = {};
+        row.forEach((value, i) => {
+            //const key: keyof ApplesYear = this.labels[i];
+            obj[this.labels[i] as keyof ApplesYear] =  value;
+        });
+    })
+
+  }*/
+
   private formatDecimal(value: string | number): string {
       return typeof value == "number" ? value.toFixed(1) : value;
   }
@@ -63,7 +76,7 @@ export class OutlookTableComponent {
   }
 
   saveOutlook(tableElem: HTMLTableElement) {
-    const rowCount = tableElem.rows.length;
+    /*const rowCount = tableElem.rows.length;
     for (let i = 1; i < rowCount; i++) {
       const row = tableElem.rows[i];
       const colCount = row.cells.length;
@@ -72,7 +85,8 @@ export class OutlookTableComponent {
         const inputElem: HTMLInputElement|null = cell.querySelector("input");
         console.log(inputElem?.value);
       }
-    }
+    }*/
+   this.applesOutlookService.saveOutlook(this.transpose(this.values));
   }
 
   ngOnDestroy() {
