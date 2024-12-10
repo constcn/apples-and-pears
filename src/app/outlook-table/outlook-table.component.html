@@ -1,3 +1,4 @@
+<!--
 <h1>Outlook</h1>
 
 <table>
@@ -12,8 +13,10 @@
         </td>
     </tr>
 </table>
-
+-->
 <h2>Transposed</h2>
+
+<button (click)="saveOutlook()">Save</button>
 
 <table #transposedTable>
     <tr>
@@ -22,12 +25,11 @@
             {{year}}
         </th>
     </tr>
-    <tr *ngFor="let row of values; index as i">
-        <th class="rowHeader">{{labels[i]}}</th>
-        <td *ngFor="let value of row; index as j">
-            <input type="number" [(ngModel)]="row[j]">
+    <tr *ngFor="let key of labels">
+        <th class="rowHeader">{{key}}</th>
+        <td *ngFor="let yearData of values">
+            <input type="number" [(ngModel)]="yearData[key]">
         </td>
     </tr>
 </table>
 
-<button (click)="saveOutlook(transposedTable)">Save</button>

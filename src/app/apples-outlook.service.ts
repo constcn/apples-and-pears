@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApplesYear } from './apples-year';
+import { ApplesRecordType } from './apples-year';
 import { ReloadDetectorService } from './reload-detector.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -25,9 +25,9 @@ export class ApplesOutlookService {
     private reloadDetectorService: ReloadDetectorService) { }
 
   // TODO: convert below methods to use http observable instead of fetch promise. 
-  getOutlook(): Observable<ApplesYear[]> {
+  getOutlook(): Observable<ApplesRecordType[]> {
     console.log("launching http request to", this.host + this.getJson);
-    return this.http.get<ApplesYear[]>(this.host + this.getJson);
+    return this.http.get<ApplesRecordType[]>(this.host + this.getJson);
   }
 
   setOutlook(body: string): Observable<any> {
@@ -40,7 +40,7 @@ export class ApplesOutlookService {
     return response;
   }
 
-  saveOutlook(data: string[][]) {
+  saveOutlook(data: ApplesRecordType[]) {
      this.http.put(this.host + "upload_json", data).subscribe({
         next () {
             console.log("Save by put method successful");
