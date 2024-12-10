@@ -12,9 +12,11 @@ export class ApplesOutlookService {
   /* Other URL that could be used:
    *     http://209.38.232.224:8080/csv/upload
    */
-  private host = "http://localhost:3000/";
-  private getJson = "outlook.json";
-  private putCsv = "upload_csv";
+  private host: string = "http://localhost:3000/";
+  private getJson: string = "outlook.json";
+  private getCsv: string = "outlook.csv";
+  private putCsv: string = "upload_csv";
+  public downloadUrl: string = this.host + this.getCsv; 
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'text/plain'})

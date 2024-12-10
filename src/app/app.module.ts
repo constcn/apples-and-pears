@@ -8,6 +8,7 @@ import { OutlookTableComponent } from './outlook-table/outlook-table.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EditableCellComponent } from './editable-cell/editable-cell.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FileDownloadComponent } from './file-download/file-download.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     StaticTableComponent,
     OutlookTableComponent,
     FileUploadComponent,
-    EditableCellComponent
+    EditableCellComponent,
+    FileDownloadComponent
   ],
   imports: [
     BrowserModule,
