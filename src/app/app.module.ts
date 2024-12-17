@@ -9,6 +9,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EditableCellComponent } from './editable-cell/editable-cell.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FileDownloadComponent } from './file-download/file-download.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FileDownloadComponent } from './file-download/file-download.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
