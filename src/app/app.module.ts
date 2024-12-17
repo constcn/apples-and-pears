@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileDownloadComponent } from './file-download/file-download.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,13 +21,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OutlookTableComponent,
     FileUploadComponent,
     EditableCellComponent,
-    FileDownloadComponent
+    FileDownloadComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
