@@ -20,8 +20,20 @@ th {
 
 .rowHeader {
     text-align:left;
+    text-wrap:nowrap;
 }
 
 td {
     text-align: right;
 }
+
+input[type="number"] {
+    appearance: none; /* Removes spinners in modern browsers */
+    -moz-appearance: textfield; /* Removes spinners in Firefox */
+    overflow: hidden; /* Prevents overflow (scrollbars) */
+    width: 100%; /* Ensures inputs fill their container */
+    height: 100%; /* Matches the cell height */
+    border: none; /* Removes default borders */
+    text-align: right;
+  }
+  

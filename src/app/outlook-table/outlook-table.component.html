@@ -18,7 +18,7 @@
 
 <button mat-raised-button (click)="saveOutlook()"><mat-icon>save</mat-icon>Save</button>
 
-<table #transposedTable>
+<table>
     <tr>
         <th></th>
         <th *ngFor="let year of years" class="columnHeader">
@@ -28,7 +28,7 @@
     <tr *ngFor="let key of labels">
         <th class="rowHeader">{{key}}</th>
         <td *ngFor="let yearData of values">
-            <input type="number" [(ngModel)]="yearData[key]">
+            <input type="number" [(ngModel)]="yearData[key]" />
         </td>
     </tr>
 </table>
