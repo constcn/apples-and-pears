@@ -1,0 +1,17 @@
+<table #normalTable>
+    <tr>
+        <th class="rowHeader">Year</th>
+        <th *ngFor="let key of labels" class="rowHeader">
+            {{key}}
+        </th>
+    </tr>
+    <tr *ngFor="let row of outlook; index as i">
+        <td>
+            <input type="text" [(ngModel)]="outlook[i].year">
+        </td>
+        <td *ngFor="let key of labels">
+            <input type="number" [(ngModel)]="outlook[i][key]">
+        </td>
+    </tr>
+</table>
+

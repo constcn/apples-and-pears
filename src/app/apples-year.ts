@@ -28,4 +28,6 @@ const applesRecordTemplate = {
 export type ApplesStatsType = typeof applesStatsTemplate;
 export type ApplesRecordType = typeof applesRecordTemplate;
 export type ApplesKeyType = Array<keyof ApplesStatsType>;
+export type ApplesAllKeyType = Array<keyof ApplesRecordType>;
 export const applesKeys = Object.keys(applesStatsTemplate) as ApplesKeyType 
+export const applesAllKeys = Object.keys(applesRecordTemplate) as ApplesAllKeyType 
