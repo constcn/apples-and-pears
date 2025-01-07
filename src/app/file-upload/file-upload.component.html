@@ -1,3 +1,14 @@
-<form >
-    Upload your file: <input type="file" name="fileupload" (change)="onFileSelected($event)" #fileUpload><br>
+<form>
+    <div class="file-upload">
+      <button type="button" mat-raised-button (click)="fileInput.click()"><mat-icon>upload</mat-icon>Upload File</button>
+      <input 
+       #fileInput
+        type="file" 
+       (change)="onFileSelected($event)" 
+        style="display: none;"
+      />
+    </div>
 </form>
+
+
+
