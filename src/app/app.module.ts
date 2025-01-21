@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { OutlookListComponent } from './outlook-list/outlook-list.component';
+import { MatTableComponent } from './mat-table/mat-table.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { OutlookListComponent } from './outlook-list/outlook-list.component';
     EditableCellComponent,
     FileDownloadComponent,
     OutlookListComponent,
+    MatTableComponent,
   ],
   imports: [
     BrowserModule,
