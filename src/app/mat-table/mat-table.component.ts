@@ -14,7 +14,8 @@ import { applesAllKeys } from '../apples-year';
     styleUrls: ['./mat-table.component.css'],
   })
   export class MatTableComponent {
-  displayedColumns: string[] =  applesAllKeys;
+  columnSchema = applesAllKeys;
+  displayedColumns =  this.columnSchema.map((col) => col.name);
   
   outlook: ApplesRecordType[] = [];
 

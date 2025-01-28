@@ -30,4 +30,4 @@ export type ApplesRecordType = typeof applesRecordTemplate;
 export type ApplesKeyType = Array<keyof ApplesStatsType>;
 export type ApplesAllKeyType = Array<keyof ApplesRecordType>;
 export const applesKeys = Object.keys(applesStatsTemplate) as ApplesKeyType 
-export const applesAllKeys = Object.keys(applesRecordTemplate) as ApplesAllKeyType 
+export const applesAllKeys = Object.entries(applesRecordTemplate).map(([name, value]) => ({name, type: typeof value}));// as ApplesAllKeyType 

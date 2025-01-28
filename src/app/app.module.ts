@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { OutlookListComponent } from './outlook-list/outlook-list.component';
 import { MatTableComponent } from './mat-table/mat-table.component';
+import { MatInputModule } from '@angular/material/input'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatTableComponent } from './mat-table/mat-table.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
