@@ -44,9 +44,10 @@ export class ApplesOutlookService {
 
   saveOutlook(data: ApplesRecordType[]) {
      this.http.put(this.host + "upload_json", data).subscribe({
-        next () {
+        next: () => {
             console.log("Save by put method successful");
             alert("Save by put method successful");
+            this.reloadDetectorService.sendMessage();
         },
         error (error) {
             console.error("Save by put method failed: ", error);
