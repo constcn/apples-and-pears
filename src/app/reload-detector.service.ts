@@ -8,8 +8,8 @@ import { Observable, Subject } from 'rxjs';
 export class ReloadDetectorService {
   private subject = new Subject<any>();
 
-  sendMessage() {
-      this.subject.next({});
+  sendMessage(source?: object) {
+      this.subject.next(source);
   }
 
   onMessage(): Observable<any> {

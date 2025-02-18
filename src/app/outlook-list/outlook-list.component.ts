@@ -22,15 +22,21 @@ export class OutlookListComponent {
   constructor(private applesOutlookService: ApplesOutlookService,
     private reloadDetectorService: ReloadDetectorService
   ) {
-    this.subscription = this.reloadDetectorService.onMessage().subscribe(() => this.refresh());
+    this.subscription = this.reloadDetectorService.onMessage().subscribe((source) => 
+      source !== this && this.refresh()
+    );
   }
 
   ngOnInit(): void {
     this.refresh();
   }
 
+  private getOutlook() {
+    return this.applesOutlookService.getOutlook();
+  }
+
   private refresh() {
-    const dataProvider = this.applesOutlookService.getOutlook();
+    const dataProvider = this.getOutlook();
     //dataProvider.subscribe((data) => this.renderOutlook(data));
     dataProvider.subscribe((data) => this.renderOutlook(data));
   }
@@ -42,7 +48,7 @@ export class OutlookListComponent {
   }
 
   saveOutlook() {
-    this.applesOutlookService.saveOutlook(this.outlook);
+    this.applesOutlookService.saveOutlook(this.outlook, this);
   }
 
   ngOnDestroy() {

@@ -10,7 +10,7 @@
             <input type="text" [(ngModel)]="outlook[i].year">
         </td>
         <td *ngFor="let key of labels">
-            <input type="number" [(ngModel)]="outlook[i][key]">
+            <input (change)="saveOutlook()" type="number" [(ngModel)]="outlook[i][key]">
         </td>
     </tr>
 </table>
